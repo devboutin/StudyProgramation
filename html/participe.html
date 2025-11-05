@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Participe - Elos Rede de Apoio</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
     <header>
-        <h1>Elos - Rede de Apoio</h1>
+        <a href="index.html" class="logo">Elos</a>
         <nav>
             <ul>
                 <li><a href="index.html">Início</a></li>
@@ -19,7 +20,7 @@
     </header>
 
     <main>
-        <section>
+        <section class="formulario-container">
             <h2>Participe</h2>
             <p>Seja um doador recorrente ou um voluntário em nossas ações.</p>
 
@@ -27,6 +28,7 @@
                 
                 <fieldset>
                     <legend>Seus Dados</legend>
+                    
                     <div>
                         <label for="nome">Nome Completo:</label>
                         <input type="text" id="nome" name="nome" required>
@@ -51,10 +53,12 @@
                                pattern="\(\d{2}\)\s\d{4,5}-\d{4}" 
                                placeholder="(00) 90000-0000">
                     </div>
+
                 </fieldset>
 
                 <fieldset>
                     <legend>Endereço</legend>
+
                     <div>
                         <label for="cep">CEP:</label>
                         <input type="text" id="cep" name="cep" required 
@@ -75,15 +79,16 @@
                             <option value="">Selecione...</option>
                             <option value="SP">São Paulo</option>
                             <option value="RJ">Rio de Janeiro</option>
+                            <option value="PR">Paraná</option>
                             </select>
                     </div>
+
                 </fieldset>
 
-                <button type="submit">Quero Ajudar</button>
+                <button type="submit" class="btn-primario">Quero Ajudar</button>
             </form>
             
         </section>
-
     </main>
 
     <footer>

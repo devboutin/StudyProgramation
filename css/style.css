@@ -1,0 +1,263 @@
+/* 1. Design System (Variáveis Globais) */
+:root {
+    /* Paleta Minimalista (8 cores) */
+    --cor-primaria: #2A9D8F; /* Verde Sálvia */
+    --cor-secundaria: #E9C46A; /* Amarelo Mostarda (para destaque) */
+    --cor-fundo: #FFFFFF;
+    --cor-fundo-leve: #F8F9FA; /* Cinza bem claro */
+    --cor-texto: #212529; /* Preto suave */
+    --cor-texto-claro: #6C757D;
+    --cor-sucesso: #28A745;
+    --cor-erro: #DC3545;
+
+    /* Tipografia (5 tamanhos) */
+    --fonte-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --tamanho-g: 2.5rem;
+    --tamanho-m: 1.8rem;
+    --tamanho-p: 1.2rem;
+    --tamanho-texto: 1rem;
+    --tamanho-pequeno: 0.875rem;
+    
+    /* Espaçamento (6 tamanhos) */
+    --esp-1: 8px;
+    --esp-2: 16px;
+    --esp-3: 24px;
+    --esp-4: 32px;
+    --esp-5: 48px;
+    --esp-6: 64px;
+}
+
+/* 2. Reset e Estilos Globais (Mobile-First) */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Header, Main (flexível), Footer */
+    min-height: 100vh;
+}
+main { 
+    width: 90%; 
+    margin: var(--esp-4) auto; /* Centraliza o conteúdo */
+    max-width: 1100px; 
+}
+img { 
+    max-width: 100%; 
+    height: auto; 
+    border-radius: 8px; /* Bordas arredondadas nas imagens */
+}
+h1, h2, h3 { 
+    color: var(--cor-primaria); 
+    margin-bottom: var(--esp-2); 
+    font-weight: 600;
+}
+p { 
+    color: var(--cor-texto-claro); 
+    line-height: 1.6; 
+    margin-bottom: var(--esp-2);
+}
+
+/* 3. "Transições Bonitas" (Componentes) */
+
+/* ★★★ A CORREÇÃO DO "QUERO DOAR" ★★★ */
+.btn-primario, .btn-secundario, button[type="submit"] {
+    display: inline-block;
+    padding: var(--esp-2) var(--esp-4);
+    border: none;
+    border-radius: 50px; /* Bordas arredondadas */
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: var(--tamanho-texto);
+    /* A MÁGICA DA TRANSIÇÃO */
+    transition: all 0.3s ease;
+}
+.btn-primario, button[type="submit"] { 
+    background-color: var(--cor-primaria); 
+    color: var(--cor-fundo); 
+}
+.btn-secundario { 
+    background-color: transparent; 
+    color: var(--cor-primaria); 
+    border: 2px solid var(--cor-primaria); 
+}
+
+/* Efeito de Hover (Bonito) */
+.btn-primario:hover, button[type="submit"]:hover {
+    transform: translateY(-3px); /* Levita o botão */
+    box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);
+}
+.btn-secundario:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
+}
+/* Estado de Foco (Acessibilidade Bonita) */
+.btn-primario:focus, .btn-secundario:focus, button[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.3);
+}
+
+/* Cards (página de causas) */
+/* Cards (página de causas) */
+.card-causa {
+    background-color: var(--cor-fundo);
+    border: 1px solid #eee;
+    border-radius: 8px; /* O card continua com bordas arredondadas */
+    /* padding: var(--esp-3); <-- REMOVEMOS O PADDING DAQUI */
+    margin-bottom: var(--esp-3);
+    transition: all 0.3s ease;
+    overflow: hidden; /* <-- IMPORTANTE: "corta" a imagem para caber no card */
+    display: flex; /* <-- Novo: para organizar o card */
+    flex-direction: column; /* <-- Novo: empilha a imagem e o texto */
+}
+/* Regra específica para a IMAGEM dentro do card */
+.card-causa img {
+    width: 100%; /* Faz a imagem preencher toda a largura */
+    height: 250px; /* Dá uma altura fixa para todas as imagens ficarem iguais */
+    object-fit: cover; /* Faz a imagem cobrir a área sem distorcer (muito bonito!) */
+    border-radius: 0; /* Remove qualquer arredondamento da imagem em si */
+}
+
+/* Regra para o "embrulho" de CONTEÚDO que criamos */
+.card-conteudo {
+    padding: var(--esp-3); /* O padding que removemos do card, agora está aqui */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz esta área crescer para o card ter altura uniforme */
+}
+
+/* Ajustes finos no texto e botão do card */
+.card-conteudo h3 {
+    margin-bottom: var(--esp-2);
+}
+.card-conteudo p {
+    margin-bottom: var(--esp-3);
+    flex-grow: 1; /* Empurra o botão para o final do card */
+}
+.card-conteudo .btn-secundario {
+    align-self: flex-start; /* Alinha o botão à esquerda */
+}
+.card-causa:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Formulários */
+form { display: grid; gap: var(--esp-3); }
+fieldset { border: none; padding: 0; display: grid; gap: var(--esp-2); }
+legend { font-size: var(--tamanho-p); font-weight: bold; color: var(--cor-primaria); margin-bottom: var(--esp-2); }
+form label { font-weight: bold; font-size: var(--tamanho-pequeno); }
+form input, form select {
+    width: 100%;
+    padding: var(--esp-2);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+form input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.3);
+}
+/* Validação visual */
+form input:invalid:not(:placeholder-shown) { border-color: var(--cor-erro); }
+
+/* 4. Layout (Header, Nav, Footer) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--esp-3) 5%;
+    background-color: var(--cor-fundo);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: sticky; /* Cabeçalho fica fixo no topo */
+    top: 0;
+    z-index: 10;
+}
+.logo { 
+    font-size: var(--tamanho-p); 
+    font-weight: bold; 
+    color: var(--cor-primaria); 
+    text-decoration: none; 
+}
+header nav ul { 
+    display: flex; 
+    list-style: none; 
+    gap: var(--esp-3); 
+}
+header nav a { 
+    text-decoration: none; 
+    color: var(--cor-texto-claro); 
+    font-weight: bold; 
+    transition: color 0.3s ease; 
+}
+header nav a:hover { 
+    color: var(--cor-primaria); 
+}
+
+/* Seção Hero (Página Inicial) */
+/* Seção Hero (Página Inicial) */
+.hero {
+    /* 1. Usamos Flexbox para controlar o alinhamento */
+    display: flex;
+    flex-direction: column; /* 2. Empilhamos os itens verticalmente */
+    align-items: center;    /* 3. Centralizamos tudo horizontalmente */
+    
+    padding: var(--esp-5) 0;
+}
+.hero h1 {
+    font-size: var(--tamanho-g);
+    text-align: center; /* Garantimos que o texto dentro do h1 fique centrado */
+}
+.hero p {
+    font-size: var(--tamanho-p);
+    margin-bottom: var(--esp-4);
+    text-align: center; /* Garantimos que o texto dentro do p fique centrado */
+}
+
+/* 4. ESTA É A PARTE NOVA: */
+.hero .btn-primario {
+    /* Adiciona um espaço bonito entre a imagem e o botão */
+    margin-top: var(--esp-4); 
+}
+
+.contato {
+    text-align: center;
+    background-color: var(--cor-fundo-leve);
+    padding: var(--esp-5);
+    border-radius: 8px;
+}
+
+footer {
+    background-color: var(--cor-fundo-leve);
+    text-align: center;
+    padding: var(--esp-4);
+    color: var(--cor-texto-claro);
+    margin-top: var(--esp-5);
+}
+
+/* 5. Responsividade (5 Breakpoints) */
+@media (max-width: 768px) {
+    /* Menu Hambúrguer (a lógica do JS vem na Entrega 3) */
+
+}
+@media (min-width: 768px) {
+    .lista-causas { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: var(--esp-3); 
+    }
+}
+@media (min-width: 992px) {
+    form { 
+        grid-template-columns: 1fr 1fr; /* Coloca fieldsets lado a lado */
+        gap: var(--esp-5);
+    }
+}
+@media (min-width: 1200px) { }
+@media (min-width: 1400px) { }
