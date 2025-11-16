@@ -1,6 +1,6 @@
 # Projeto Elos - Rede de Apoio (Plataforma ONG)
 
-Este é um projeto acadêmico para a disciplina de [Nome da Disciplina] do curso de Análise e Desenvolvimento de Sistemas. O objetivo é desenvolver uma plataforma web completa e profissional para uma ONG de doações, aplicando conceitos de HTML, CSS, JavaScript e práticas de desenvolvimento de mercado.
+Este é um projeto acadêmico para a disciplina de Front-End Para Web do curso de Análise e Desenvolvimento de Sistemas. O objetivo é desenvolver uma plataforma web completa e profissional para uma ONG de doações, aplicando conceitos de HTML, CSS, JavaScript e práticas de desenvolvimento de mercado.
 
 ## 🚀 Visão de Design
 O projeto "Elos" foi construído com uma estética **minimalista e moderna**, focada em transições suaves (CSS Transitions) e feedback claro ao usuário (JS). A paleta de cores (verde sálvia, branco e cinza) foi escolhida para transmitir calma, confiança e profissionalismo.
@@ -35,4 +35,4 @@ O projeto "Elos" foi construído com uma estética **minimalista e moderna**, fo
 
 ## 👤 Autor
 * **Guilherme Boutin**
-* [seu-linkedin.com/in/seu-usuario]
+* [https://www.linkedin.com/in/guilherme-boutin/]
