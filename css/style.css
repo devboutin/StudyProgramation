@@ -38,18 +38,18 @@ body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
     display: grid;
-    grid-template-rows: auto 1fr auto; /* Header, Main (flexível), Footer */
+    grid-template-rows: auto 1fr auto;
     min-height: 100vh;
 }
 main { 
     width: 90%; 
-    margin: var(--esp-4) auto; /* Centraliza o conteúdo */
+    margin: var(--esp-4) auto;
     max-width: 1100px; 
 }
 img { 
     max-width: 100%; 
     height: auto; 
-    border-radius: 8px; /* Bordas arredondadas nas imagens */
+    border-radius: 8px;
 }
 h1, h2, h3 { 
     color: var(--cor-primaria); 
@@ -64,17 +64,16 @@ p {
 
 /* 3. "Transições Bonitas" (Componentes) */
 
-/* ★★★ A CORREÇÃO DO "QUERO DOAR" ★★★ */
+/* Botões */
 .btn-primario, .btn-secundario, button[type="submit"] {
     display: inline-block;
     padding: var(--esp-2) var(--esp-4);
     border: none;
-    border-radius: 50px; /* Bordas arredondadas */
+    border-radius: 50px;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
     font-size: var(--tamanho-texto);
-    /* A MÁGICA DA TRANSIÇÃO */
     transition: all 0.3s ease;
 }
 .btn-primario, button[type="submit"] { 
@@ -89,7 +88,7 @@ p {
 
 /* Efeito de Hover (Bonito) */
 .btn-primario:hover, button[type="submit"]:hover {
-    transform: translateY(-3px); /* Levita o botão */
+    transform: translateY(-3px);
     box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);
 }
 .btn-secundario:hover {
@@ -103,49 +102,43 @@ p {
 }
 
 /* Cards (página de causas) */
-/* Cards (página de causas) */
 .card-causa {
     background-color: var(--cor-fundo);
     border: 1px solid #eee;
-    border-radius: 8px; /* O card continua com bordas arredondadas */
-    /* padding: var(--esp-3); <-- REMOVEMOS O PADDING DAQUI */
+    border-radius: 8px; 
     margin-bottom: var(--esp-3);
     transition: all 0.3s ease;
-    overflow: hidden; /* <-- IMPORTANTE: "corta" a imagem para caber no card */
-    display: flex; /* <-- Novo: para organizar o card */
-    flex-direction: column; /* <-- Novo: empilha a imagem e o texto */
-}
-/* Regra específica para a IMAGEM dentro do card */
-.card-causa img {
-    width: 100%; /* Faz a imagem preencher toda a largura */
-    height: 250px; /* Dá uma altura fixa para todas as imagens ficarem iguais */
-    object-fit: cover; /* Faz a imagem cobrir a área sem distorcer (muito bonito!) */
-    border-radius: 0; /* Remove qualquer arredondamento da imagem em si */
-}
-
-/* Regra para o "embrulho" de CONTEÚDO que criamos */
-.card-conteudo {
-    padding: var(--esp-3); /* O padding que removemos do card, agora está aqui */
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Faz esta área crescer para o card ter altura uniforme */
-}
-
-/* Ajustes finos no texto e botão do card */
-.card-conteudo h3 {
-    margin-bottom: var(--esp-2);
-}
-.card-conteudo p {
-    margin-bottom: var(--esp-3);
-    flex-grow: 1; /* Empurra o botão para o final do card */
-}
-.card-conteudo .btn-secundario {
-    align-self: flex-start; /* Alinha o botão à esquerda */
+    overflow: hidden;
+    display: flex; 
+    flex-direction: column; 
 }
 .card-causa:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
+.card-causa img {
+    width: 100%; 
+    height: 250px; 
+    object-fit: cover;
+    border-radius: 0; 
+}
+.card-conteudo {
+    padding: var(--esp-3); 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.card-conteudo h3 {
+    margin-bottom: var(--esp-2);
+}
+.card-conteudo p {
+    margin-bottom: var(--esp-3);
+    flex-grow: 1;
+}
+.card-conteudo .btn-secundario {
+    align-self: flex-start;
+}
+
 
 /* Formulários */
 form { display: grid; gap: var(--esp-3); }
@@ -159,13 +152,32 @@ form input, form select {
     border-radius: 8px;
     transition: all 0.3s ease;
 }
-form input:focus {
+form input:focus, form select:focus {
     outline: none;
     border-color: var(--cor-primaria);
     box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.3);
 }
-/* Validação visual */
-form input:invalid:not(:placeholder-shown) { border-color: var(--cor-erro); }
+
+/* Validação HTML5 (borda vermelha/verde) */
+form input:invalid:not(:placeholder-shown):not(:focus) { border-color: var(--cor-erro); }
+form input:valid { border-color: var(--cor-sucesso); }
+form select:invalid:not(:focus) { border-color: var(--cor-erro); }
+form select:valid { border-color: var(--cor-sucesso); }
+
+/* --- Estilo da Mensagem de Erro (Entrega 3) --- */
+.error-message {
+    color: var(--cor-erro);
+    font-size: var(--tamanho-pequeno);
+    font-weight: bold;
+    margin-top: var(--esp-1);
+    height: var(--esp-2); 
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.error-message.visible {
+    opacity: 1;
+}
+
 
 /* 4. Layout (Header, Nav, Footer) */
 header {
@@ -175,10 +187,13 @@ header {
     padding: var(--esp-3) 5%;
     background-color: var(--cor-fundo);
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    position: sticky; /* Cabeçalho fica fixo no topo */
+    position: sticky;
     top: 0;
     z-index: 10;
+    /* Transição para a sombra (para Entrega 3) */
+    transition: box-shadow 0.3s ease;
 }
+
 .logo { 
     font-size: var(--tamanho-p); 
     font-weight: bold; 
@@ -201,28 +216,22 @@ header nav a:hover {
 }
 
 /* Seção Hero (Página Inicial) */
-/* Seção Hero (Página Inicial) */
 .hero {
-    /* 1. Usamos Flexbox para controlar o alinhamento */
     display: flex;
-    flex-direction: column; /* 2. Empilhamos os itens verticalmente */
-    align-items: center;    /* 3. Centralizamos tudo horizontalmente */
-    
+    flex-direction: column; 
+    align-items: center;    
     padding: var(--esp-5) 0;
 }
 .hero h1 {
     font-size: var(--tamanho-g);
-    text-align: center; /* Garantimos que o texto dentro do h1 fique centrado */
+    text-align: center; 
 }
 .hero p {
     font-size: var(--tamanho-p);
     margin-bottom: var(--esp-4);
-    text-align: center; /* Garantimos que o texto dentro do p fique centrado */
+    text-align: center; 
 }
-
-/* 4. ESTA É A PARTE NOVA: */
 .hero .btn-primario {
-    /* Adiciona um espaço bonito entre a imagem e o botão */
     margin-top: var(--esp-4); 
 }
 
@@ -241,11 +250,7 @@ footer {
     margin-top: var(--esp-5);
 }
 
-/* 5. Responsividade (5 Breakpoints) */
-@media (max-width: 768px) {
-    /* Menu Hambúrguer (a lógica do JS vem na Entrega 3) */
-
-}
+/* 5. Responsividade (Breakpoints) */
 @media (min-width: 768px) {
     .lista-causas { 
         display: grid; 
@@ -255,9 +260,57 @@ footer {
 }
 @media (min-width: 992px) {
     form { 
-        grid-template-columns: 1fr 1fr; /* Coloca fieldsets lado a lado */
+        grid-template-columns: 1fr 1fr;
         gap: var(--esp-5);
     }
 }
 @media (min-width: 1200px) { }
 @media (min-width: 1400px) { }
+
+
+/* --- Estilos para Interações JS (Entrega 3) --- */
+
+/* Sombra do Header ao rolar */
+header.scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Efeito de Fade-in (genérico) */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.fade-in-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Botão de "Voltar ao Topo" */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--cor-primaria);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.4s ease;
+    
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.scroll-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
