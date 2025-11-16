@@ -314,3 +314,29 @@ header.scrolled {
     opacity: 1;
     transform: translateY(0);
 }
+/* --- Entrega 4: Acessibilidade (Modo Escuro) --- */
+@media (prefers-color-scheme: dark) {
+    body {
+        --cor-fundo: #121212;
+        --cor-fundo-leve: #1E1E1E;
+        --cor-texto: #E0E0E0;
+        --cor-texto-claro: #A0A0A0;
+        --cor-branca: #1E1E1E;
+    }
+
+    header, footer, .contato, .card-causa {
+        background-color: var(--cor-fundo-leve);
+        border-color: #333;
+    }
+
+    form input, form select {
+        background-color: #222;
+        border-color: #444;
+        color: var(--cor-texto);
+    }
+    
+    form select option {
+        background-color: #333;
+        color: var(--cor-texto);
+    }
+}
